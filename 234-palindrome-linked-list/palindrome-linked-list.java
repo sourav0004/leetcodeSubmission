@@ -9,21 +9,42 @@
  * }
  */
 class Solution {
-    public boolean isPalindrome(ListNode head) {
-        StringBuilder s=new StringBuilder();
-
-        while(head!=null){
-            s.append(Integer.toString(head.val));
-            head=head.next;
-
+    private static ListNode reverse(ListNode head){
+        ListNode current=head;
+        ListNode prev=null;
+        while(current!=null){
+            ListNode temp=current.next;
+            current.next=prev;
+            prev=current;
+            current=temp;;
         }
 
-        String temp1=new String(s);
+        return prev;
+    }
+    public boolean isPalindrome(ListNode head) {
 
-        String temp=new String(s.reverse());
-        
+        ListNode fast=head;
+        ListNode slow=head;
 
-        return temp1.equals(temp)?true:false;
+        while(fast.next!=null && fast.next.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+
+        slow.next=reverse(slow.next);
+        ListNode dummy=head;
+
+        slow=slow.next;
+        while(slow!=null){
+            if(dummy.val==slow.val){
+             slow=slow.next;
+             dummy=dummy.next;
+            }
+            else return false;
+        }
+
+        return true;
+
         
     }
 }
