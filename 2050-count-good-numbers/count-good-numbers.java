@@ -10,10 +10,10 @@ class Solution {
          return (x*ans*ans)%mod;
     }
     public int countGoodNumbers(long n) {
-        long odd=n/2;
-        long even=odd+n%2;
+        long first=(n%2==0)?n/2:n/2+1;
+        long second=n/2;
 
-        return (int)((power(5,even)*power(4,odd))%mod);
+        return (int)((power(5,first)*power(4,second))%mod);
 
     }
 }
