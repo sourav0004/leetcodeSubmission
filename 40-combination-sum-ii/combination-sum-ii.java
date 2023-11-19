@@ -5,10 +5,6 @@ class Solution {
                 ans.add(new ArrayList<>(temp));
                 return;          
             }
-            if(index==candidates.length){
-                return;
-        }
-
         for(int i=index;i<candidates.length;i++){
         if((i>index && candidates[i-1]==candidates[i]))
         continue;
